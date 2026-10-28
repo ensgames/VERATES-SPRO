@@ -1,0 +1,52 @@
+class Daire:
+    def __init__(self, daire_no, tip, fiyat, durum):
+        self.daire_no = daire_no
+        self.tip = tip  # Satılık veya Kiralık
+        self.fiyat = fiyat
+        self.durum = durum  # Müsait veya Satıldı/Kiralandı
+
+class Musteri:
+    def __init__(self, isim, telefon, tercih):
+        self.isim = isim
+        self.telefon = telefon
+        self.tercih = tercih  # İlgilendiği daire tipi
+
+class Islem:
+    def __init__(self, daire_no, musteri_isim, islem_turu, tutar):
+        self.daire_no = daire_no
+        self.musteri_isim = musteri_isim
+        self.islem_turu = islem_turu  # Satış veya Kiralama
+        self.tutar = tutar
+
+class Belge:
+    def __init__(self, daire_no, belge_adi, icerik):
+        self.daire_no = daire_no
+        self.belge_adi = belge_adi
+        self.icerik = icerik
+
+class EmlakYonetimSistemi:
+    def __init__(self):
+        self.portfoy = []
+        self.musteriler = []
+        self.islemler = []
+        self.evraklar = []
+
+    def daire_ekle(self, daire_no, tip, fiyat, durum):
+        yeni_daire = Daire(daire_no, tip, fiyat, durum)
+        self.portfoy.append(yeni_daire)
+        print(f"Daire {daire_no} portföye eklendi.")
+
+    def musteri_ekle(self, isim, telefon, tercih):
+        yeni_musteri = Musteri(isim, telefon, tercih)
+        self.musteriler.append(yeni_musteri)
+        print(f"Müşteri {isim} sisteme kaydedildi.")
+
+    def islem_kaydet(self, daire_no, musteri_isim, islem_turu, tutar):
+        yeni_islem = Islem(daire_no, musteri_isim, islem_turu, tutar)
+        self.islemler.append(yeni_islem)
+        print(f"{islem_turu} işlemi başarıyla kaydedildi.")
+
+    def belge_ekle(self, daire_no, belge_adi, icerik):
+        yeni_belge = Belge(daire_no, belge_adi, icerik)
+        self.evraklar.append(yeni_belge)
+        print(f"{belge_adi} belgesi sisteme eklendi.")

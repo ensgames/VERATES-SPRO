@@ -1,0 +1,60 @@
+class Sakin:
+    def __init__(self, isim, telefon, rol):
+        self.isim = isim
+        self.telefon = telefon
+        self.rol = rol  # Malik veya Sakin
+
+class Daire:
+    def __init__(self, daire_no):
+        self.daire_no = daire_no
+        self.sakinler = []
+
+    def sakin_ekle(self, isim, telefon, rol):
+        yeni_sakin = Sakin(isim, telefon, rol)
+        self.sakinler.append(yeni_sakin)
+
+class Kasa:
+    def __init__(self):
+        self.gelirler = 0
+        self.giderler = 0
+
+    def gelir_ekle(self, miktar):
+        self.gelirler += miktar
+
+    def gider_ekle(self, miktar):
+        self.giderler += miktar
+
+    def bakiye_goster(self):
+        return self.gelirler - self.giderler
+
+class Duyuru:
+    def __init__(self, baslik, icerik, hedef_grup):
+        self.baslik = baslik
+        self.icerik = icerik
+        self.hedef_grup = hedef_grup # Örn: "A Binasi Malik Grubu"
+
+class Bina:
+    def __init__(self, bina_adi, blok_sayisi, daire_sayisi):
+        self.bina_adi = bina_adi
+        self.blok_sayisi = blok_sayisi
+        self.daire_sayisi = daire_sayisi
+        self.daireler = [Daire(i) for i in range(1, daire_sayisi + 1)]
+        self.kasa = Kasa()
+        self.duyurular = []
+
+    def duyuru_ekle(self, baslik, icerik, hedef_grup):
+        yeni_duyuru = Duyuru(baslik, icerik, hedef_grup)
+        self.duyurular.append(yeni_duyuru)
+
+    def sms_gonder(self, grup, mesaj):
+        # SMS gönderme mantığı buraya entegre edilecek
+        print(f"{grup} grubuna SMS gönderildi: {mesaj}")
+
+class VetasisPro:
+    def __init__(self):
+        self.binalar = []
+
+    def bina_ekle(self, bina_adi, blok_sayisi, daire_sayisi):
+        yeni_bina = Bina(bina_adi, blok_sayisi, daire_sayisi)
+        self.binalar.append(yeni_bina)
+        print(f"{bina_adi} başarıyla eklendi.")
